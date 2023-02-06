@@ -1,13 +1,13 @@
 package com.example.cryptology.lab1;
 
-import com.example.cryptology.Helper.HelperForPlayFair;
+import com.example.cryptology.Helper.HelperForLab1;
 
 public class PlayFair {
     public static char matrixForEncryptionByPlayFair[][];
 
     public String encryptionText(String word) {
         fillingMatrixForEncryption();
-        word = HelperForPlayFair.refactoringWord(word);
+        word = HelperForLab1.refactoringWord(word,2);
         String encryptWord = "";
 
         for (int i = 0; i < word.length(); i = i + 2) {

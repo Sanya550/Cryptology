@@ -1,9 +1,12 @@
 package com.example.cryptology.lab1;
 
+import com.example.cryptology.Helper.HelperForLab1;
+
 import java.util.*;
 
+import static com.example.cryptology.Helper.HelperForLab1.fillingMatrix;
+
 public class Vigenere {
-    public static LinkedHashMap<Integer, Character> linkedHashMapForVigenere = new LinkedHashMap<>();
 
     public String encryptText(String phrase, String keyWord) {
         String encryptionWord = "";
@@ -18,7 +21,7 @@ public class Vigenere {
 
         //беремо з мапи по ключу
         for (int i = 0; i < encryptList.size(); i++) {
-            encryptionWord += linkedHashMapForVigenere.get(encryptList.get(i));
+            encryptionWord += HelperForLab1.linkedHashMapForAlphabetical.get(encryptList.get(i));
         }
         return encryptionWord;
     }
@@ -28,8 +31,8 @@ public class Vigenere {
         List<Integer> resultList = new ArrayList<>();
         for (int i = 0; i < text.length(); i++) {
             char a = text.charAt(i);
-            for (int j = 0; j < linkedHashMapForVigenere.size(); j++) {
-                if (a == linkedHashMapForVigenere.get(j)) {
+            for (int j = 0; j < HelperForLab1.linkedHashMapForAlphabetical.size(); j++) {
+                if (a == HelperForLab1.linkedHashMapForAlphabetical.get(j)) {
                     resultList.add(j);
                     break;
                 }
@@ -45,34 +48,5 @@ public class Vigenere {
             counter++;
         }
         return keyWord;
-    }
-
-    public static void fillingMatrix() {
-        linkedHashMapForVigenere.put(0, 'a');
-        linkedHashMapForVigenere.put(1, 'b');
-        linkedHashMapForVigenere.put(2, 'c');
-        linkedHashMapForVigenere.put(3, 'd');
-        linkedHashMapForVigenere.put(4, 'e');
-        linkedHashMapForVigenere.put(5, 'f');
-        linkedHashMapForVigenere.put(6, 'g');
-        linkedHashMapForVigenere.put(7, 'h');
-        linkedHashMapForVigenere.put(8, 'i');
-        linkedHashMapForVigenere.put(9, 'j');
-        linkedHashMapForVigenere.put(10, 'k');
-        linkedHashMapForVigenere.put(11, 'l');
-        linkedHashMapForVigenere.put(12, 'm');
-        linkedHashMapForVigenere.put(13, 'n');
-        linkedHashMapForVigenere.put(14, 'o');
-        linkedHashMapForVigenere.put(15, 'p');
-        linkedHashMapForVigenere.put(16, 'q');
-        linkedHashMapForVigenere.put(17, 'r');
-        linkedHashMapForVigenere.put(18, 's');
-        linkedHashMapForVigenere.put(19, 't');
-        linkedHashMapForVigenere.put(20, 'u');
-        linkedHashMapForVigenere.put(21, 'v');
-        linkedHashMapForVigenere.put(22, 'w');
-        linkedHashMapForVigenere.put(23, 'x');
-        linkedHashMapForVigenere.put(24, 'y');
-        linkedHashMapForVigenere.put(25, 'z');
     }
 }

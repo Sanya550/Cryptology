@@ -1,18 +1,12 @@
 package com.example.cryptology.controller;
 
 import com.example.cryptology.lab1.Hilla;
+import com.example.cryptology.lab1.Permutations;
 import com.example.cryptology.lab1.PlayFair;
 import com.example.cryptology.lab1.Vigenere;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Controller {
     char[][] keyTable = {{2, 0, 3}, {0, 4, 0}, {5, 0, 7}};//для метода Hilla
@@ -53,7 +47,7 @@ public class Controller {
     }
 
     @FXML
-    protected void fillTestDataForPlayFair(){
+    protected void fillTestDataForPlayFair() {
         textForEncrypt.setText("pyvovarsasha");
         keyForEncrypt.setText("comander");
     }
@@ -68,22 +62,37 @@ public class Controller {
     }
 
     @FXML
-    protected void fillTestDataForVigenere(){
+    protected void fillTestDataForVigenere() {
         textForEncrypt.setText("wearediscoveredsaveyourself");
         keyForEncrypt.setText("deceptive");
     }
 
     //Метод Хілла:
     @FXML
-    protected void encryptTextForHill(){
+    protected void encryptTextForHill() {
         String text = textForEncrypt.getText();
         Hilla hilla = new Hilla();
-        labelEncrypt.setText(hilla.encryptByHill(text,keyTable));
+        labelEncrypt.setText(hilla.encryptByHill(text, keyTable));
     }
 
     @FXML
-    protected void fillTestDataForHill(){
+    protected void fillTestDataForHill() {
         textForEncrypt.setText("pyvovarsasha");
         keyForEncrypt.setText("{{2, 0, 3}, {0, 4, 0}, {5, 0, 7}}");
+    }
+
+    //Метод Перестановки:
+    @FXML
+    protected void encryptTextForPermutations() {
+        String text = textForEncrypt.getText();
+        String key = keyForEncrypt.getText();
+        Permutations permutations = new Permutations();
+        labelEncrypt.setText(permutations.encryptTextByPermutations(text, key));
+    }
+
+    @FXML
+    protected void fillTestDataForPermutations(){
+        textForEncrypt.setText("enemyattactstonight");
+        keyForEncrypt.setText("31452");
     }
 }
