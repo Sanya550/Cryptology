@@ -16,7 +16,6 @@ public class Vigenere {
         List<Integer> encryptList = new ArrayList<>();
         for (int i = 0; i < intValueForPhrase.size(); i++) {
             encryptList.add(Math.floorMod(intValueForPhrase.get(i) + intValueForKeyWord.get(i), 26));
-            //Note: for decryption will be intValueForPhrase.get(i) - intValueForKeyWord.get(i)
         }
 
         //беремо з мапи по ключу
@@ -39,6 +38,23 @@ public class Vigenere {
             }
         }
         return resultList;
+    }
+
+    public String deEncryptText(String phrase, String keyWord) {
+        String deEncryptionWord = "";
+        keyWord = refactoringKeyWord(phrase, keyWord);
+        List<Integer> intValueForPhrase = gettingDigitValueFromCharacter(phrase);
+        List<Integer> intValueForKeyWord = gettingDigitValueFromCharacter(keyWord);
+        List<Integer> encryptList = new ArrayList<>();
+        for (int i = 0; i < intValueForPhrase.size(); i++) {
+            encryptList.add(Math.floorMod(intValueForPhrase.get(i) - intValueForKeyWord.get(i), 26));
+        }
+
+        //беремо з мапи по ключу
+        for (int i = 0; i < encryptList.size(); i++) {
+            deEncryptionWord += HelperForLab1.linkedHashMapForAlphabetical.get(encryptList.get(i));
+        }
+        return deEncryptionWord;
     }
 
     public static String refactoringKeyWord(String phrase, String keyWord) {

@@ -62,6 +62,14 @@ public class Controller {
     }
 
     @FXML
+    protected void deEncryptTextByVingere() {
+        String encryptText = labelEncrypt.getText();
+        String key = keyForEncrypt.getText();
+        Vigenere vigenere = new Vigenere();
+        labelEncrypt.setText(vigenere.deEncryptText(encryptText, key));
+    }
+
+    @FXML
     protected void fillTestDataForVigenere() {
         textForEncrypt.setText("wearediscoveredsaveyourself");
         keyForEncrypt.setText("deceptive");
@@ -91,8 +99,16 @@ public class Controller {
     }
 
     @FXML
+    protected void deEncryptTextForPermutations() {
+        String encryptText = labelEncrypt.getText();
+        String key = keyForEncrypt.getText();
+        Permutations permutations = new Permutations();
+        labelEncrypt.setText(permutations.deEncryptTextByPermutations(encryptText, key));
+    }
+
+    @FXML
     protected void fillTestDataForPermutations(){
-        textForEncrypt.setText("enemyattactstonight");
+        textForEncrypt.setText("enemyattactstonights");
         keyForEncrypt.setText("31452");
     }
 }

@@ -31,6 +31,7 @@
                               <Menu mnemonicParsing="false" text="Метод Віженера">
                                  <items>
                                     <MenuItem mnemonicParsing="false" onAction="#encryptTextByVingere" text="Зашифрувати" />
+                                    <MenuItem mnemonicParsing="false" onAction="#deEncryptTextByVingere" text="Дешифрувати" />
                                     <MenuItem mnemonicParsing="false" onAction="#fillTestDataForVigenere" text="Заповнити тестовими даними" />
                                  </items>
                               </Menu>
@@ -43,6 +44,7 @@
                               <Menu mnemonicParsing="false" text="Метод Перестановок">
                                  <items>
                                     <MenuItem mnemonicParsing="false" onAction="#encryptTextForPermutations" text="Зашифрувати" />
+                                    <MenuItem mnemonicParsing="false" onAction="#deEncryptTextForPermutations" text="Дешифрувати" />
                                     <MenuItem mnemonicParsing="false" onAction="#fillTestDataForPermutations" text="Заповнити тестовими даними" />
                                  </items>
                               </Menu>
