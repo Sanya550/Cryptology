@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cryptology.controller.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cryptology.controller.Controller">
    <children>
       <SplitPane dividerPositions="0.4894366197183099" layoutX="191.0" layoutY="110.0" orientation="VERTICAL" prefHeight="570.0" prefWidth="756.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -52,16 +52,9 @@
                       </Menu>
                         <Menu mnemonicParsing="false" text="lab2">
                            <items>
-                              <Menu mnemonicParsing="false" text="Метод Плейфейра">
+                              <Menu mnemonicParsing="false" text="Метод Лемера">
                                  <items>
                                     <MenuItem mnemonicParsing="false" onAction="#lemera" text="Лемера" />
-                                 </items>
-                              </Menu>
-                              <Menu mnemonicParsing="false" text="Метод Віженера">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#encryptTextByVingere" text="Зашифрувати" />
-                                    <MenuItem mnemonicParsing="false" onAction="#deEncryptTextByVingere" text="Дешифрувати" />
-                                    <MenuItem mnemonicParsing="false" onAction="#fillTestDataForVigenere" text="Заповнити тестовими даними" />
                                  </items>
                               </Menu>
                            </items>
