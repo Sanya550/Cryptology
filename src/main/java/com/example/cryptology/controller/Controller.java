@@ -10,8 +10,9 @@ import com.example.cryptology.lab2.Lemer;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
 
@@ -30,6 +31,7 @@ public class Controller {
     private Label labelEncrypt;
 
     //lab2:
+    List<Integer> listForBBS = new ArrayList<>();
     @FXML
     private TextField strMLemer;
 
@@ -168,8 +170,8 @@ public class Controller {
         int s = Integer.parseInt(strBBSForS.getText());
         int quantity = Integer.parseInt(strQuantity.getText());
         BBS bbs = new BBS();
-        var list = bbs.generateListOfDigit(p, q, s, quantity);
-        HelperForLab2.showListOfPsewdoSequence(tableView, list);
+        listForBBS = bbs.generateListOfDigit(p, q, s, quantity);
+        HelperForLab2.showListOfPsewdoSequence(tableView, listForBBS);
     }
 
     @FXML
@@ -179,8 +181,19 @@ public class Controller {
         int s = Integer.parseInt(strBBSForS.getText());
         int quantity = Integer.parseInt(strQuantity.getText());
         BBS bbs = new BBS();
-        var list = bbs.generateListOfDigit(p, q, s, quantity);
-        var listOneOrZero = bbs.listZeroOrOne(list);
+        var listOneOrZero = bbs.listZeroOrOne(listForBBS);
         JOptionPane.showMessageDialog(null, bbs.testsForBBS(listOneOrZero), "Tests", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @FXML
+    protected void testData() {
+        strBBSForP.setText("383");
+        strBBSForQ.setText("503");
+        strBBSForS.setText("101355");
+        strQuantity.setText("20000");
+        strALemer.setText("4");
+        strMLemer.setText("10000");
+        strX0Lemer.setText("67");
+        strCLemer.setText("5");
     }
 }

@@ -52,6 +52,7 @@
                       </Menu>
                         <Menu mnemonicParsing="false" text="lab2">
                            <items>
+                              <MenuItem mnemonicParsing="false" onAction="#testData" text="Test Data" />
                               <Menu mnemonicParsing="false" text="Метод Лемера">
                                  <items>
                                     <MenuItem mnemonicParsing="false" onAction="#lemera" text="Лемера" />
