@@ -57,6 +57,12 @@
                                     <MenuItem mnemonicParsing="false" onAction="#lemera" text="Лемера" />
                                  </items>
                               </Menu>
+                              <Menu mnemonicParsing="false" text="Метод BBS">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#bbsForDigits" text="BBS" />
+                                    <MenuItem mnemonicParsing="false" onAction="#bbsForTests" text="BBS Тести" />
+                                 </items>
+                              </Menu>
                            </items>
                         </Menu>
                     </menus>
@@ -111,8 +117,26 @@
                                     <Font size="13.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="strQuantityLemer" layoutX="207.0" layoutY="112.0" prefHeight="25.0" prefWidth="71.0" />
+                              <TextField fx:id="strQuantity" layoutX="207.0" layoutY="112.0" prefHeight="25.0" prefWidth="71.0" />
                               <Text layoutX="158.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="к-сть =" wrappingWidth="43.99999248981476">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="strBBSForP" layoutX="344.0" layoutY="111.0" prefHeight="25.0" prefWidth="71.0" />
+                              <TextField fx:id="strBBSForQ" layoutX="344.0" layoutY="148.0" prefHeight="25.0" prefWidth="71.0" />
+                              <TextField fx:id="strBBSForS" layoutX="344.0" layoutY="182.0" prefHeight="25.0" prefWidth="71.0" />
+                              <Text layoutX="301.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="p =" wrappingWidth="35.99999248981476">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="301.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="q =" wrappingWidth="35.99999248981476">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="301.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="s =" wrappingWidth="35.99999248981476">
                                  <font>
                                     <Font size="13.0" />
                                  </font>

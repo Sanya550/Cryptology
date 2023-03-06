@@ -5,10 +5,13 @@ import com.example.cryptology.lab1.Hilla;
 import com.example.cryptology.lab1.Permutations;
 import com.example.cryptology.lab1.PlayFair;
 import com.example.cryptology.lab1.Vigenere;
+import com.example.cryptology.lab2.BBS;
 import com.example.cryptology.lab2.Lemer;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import javax.swing.*;
 
 public class Controller {
 
@@ -40,7 +43,16 @@ public class Controller {
     private TextField strX0Lemer;
 
     @FXML
-    private TextField strQuantityLemer;
+    private TextField strQuantity;
+
+    @FXML
+    private TextField strBBSForP;
+
+    @FXML
+    private TextField strBBSForQ;
+
+    @FXML
+    private TextField strBBSForS;
 
     //lab1:
     //Метод Плейфейра:
@@ -134,15 +146,41 @@ public class Controller {
     }
 
     //lab2:
+    //Lemera:
     @FXML
     protected void lemera() {
         int m = Integer.parseInt(strMLemer.getText());
         int a = Integer.parseInt(strALemer.getText());
         int c = Integer.parseInt(strCLemer.getText());
         int x0 = Integer.parseInt(strX0Lemer.getText());
-        int quantity = Integer.parseInt(strQuantityLemer.getText());
+        int quantity = Integer.parseInt(strQuantity.getText());
         Lemer lemer = new Lemer();
         var list = lemer.generateListOfDigit(quantity, m, a, c, x0);
+        JOptionPane.showMessageDialog(null, "Період = " + lemer.findPeriod(list), "Info details", JOptionPane.INFORMATION_MESSAGE);
         HelperForLab2.showListOfPsewdoSequence(tableView, list);
+    }
+
+    //BBS:
+    @FXML
+    protected void bbsForDigits() {
+        int p = Integer.parseInt(strBBSForP.getText());
+        int q = Integer.parseInt(strBBSForQ.getText());
+        int s = Integer.parseInt(strBBSForS.getText());
+        int quantity = Integer.parseInt(strQuantity.getText());
+        BBS bbs = new BBS();
+        var list = bbs.generateListOfDigit(p, q, s, quantity);
+        HelperForLab2.showListOfPsewdoSequence(tableView, list);
+    }
+
+    @FXML
+    protected void bbsForTests() {
+        int p = Integer.parseInt(strBBSForP.getText());
+        int q = Integer.parseInt(strBBSForQ.getText());
+        int s = Integer.parseInt(strBBSForS.getText());
+        int quantity = Integer.parseInt(strQuantity.getText());
+        BBS bbs = new BBS();
+        var list = bbs.generateListOfDigit(p, q, s, quantity);
+        var listOneOrZero = bbs.listZeroOrOne(list);
+        JOptionPane.showMessageDialog(null, bbs.testsForBBS(listOneOrZero), "Tests", JOptionPane.INFORMATION_MESSAGE);
     }
 }
