@@ -7,10 +7,15 @@ import com.example.cryptology.lab1.PlayFair;
 import com.example.cryptology.lab1.Vigenere;
 import com.example.cryptology.lab2.BBS;
 import com.example.cryptology.lab2.Lemer;
+import com.example.cryptology.lab3.Blowfish;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import javax.swing.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +24,7 @@ public class Controller {
     @FXML
     private TableView tableView;
 
-    //lab1:
-    char[][] keyTable = {{2, 0, 3}, {0, 4, 0}, {5, 0, 7}};//для метода Hilla
+    //lab1 and lab3:
     @FXML
     private TextField textForEncrypt;
 
@@ -29,6 +33,8 @@ public class Controller {
 
     @FXML
     private Label labelEncrypt;
+    //lab1:
+    char[][] keyTable = {{2, 0, 3}, {0, 4, 0}, {5, 0, 7}};//для метода Hilla
 
     //lab2:
     List<Integer> listForBBS = new ArrayList<>();
@@ -195,5 +201,28 @@ public class Controller {
         strMLemer.setText("10000");
         strX0Lemer.setText("67");
         strCLemer.setText("5");
+    }
+
+    //lab3:
+    @FXML
+    protected void encryptTextByBlowFish() throws Exception {
+        String phrase = textForEncrypt.getText();
+        String key = keyForEncrypt.getText();
+        SecretKey secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "Blowfish");
+        labelEncrypt.setText(Blowfish.encrypt(phrase, secretKey));
+    }
+
+    @FXML
+    protected void deEncryptTextByBlowFish() throws Exception {
+        String encryptText = labelEncrypt.getText();
+        String key = keyForEncrypt.getText();
+        SecretKey secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "Blowfish");
+        labelEncrypt.setText(Blowfish.decrypt(encryptText, secretKey));
+    }
+
+    @FXML
+    protected void fillTestDataForBlowFish() {
+        textForEncrypt.setText("wearediscoveredsaveyourself");
+        keyForEncrypt.setText("deceptive");
     }
 }

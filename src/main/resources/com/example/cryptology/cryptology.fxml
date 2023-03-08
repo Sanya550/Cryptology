@@ -66,6 +66,17 @@
                               </Menu>
                            </items>
                         </Menu>
+                        <Menu mnemonicParsing="false" text="lab3">
+                           <items>
+                              <Menu mnemonicParsing="false" text="Blowfish">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#fillTestDataForBlowFish" text="Test Data" />
+                                    <MenuItem mnemonicParsing="false" onAction="#encryptTextByBlowFish" text="Зашифрувати" />
+                                    <MenuItem mnemonicParsing="false" onAction="#deEncryptTextByBlowFish" text="Дешифрувати" />
+                                 </items>
+                              </Menu>
+                           </items>
+                        </Menu>
                     </menus>
                   </MenuBar>
                   <SplitPane dividerPositions="0.6662234042553191" layoutX="251.0" layoutY="25.0" prefHeight="210.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">

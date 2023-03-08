@@ -2,6 +2,7 @@ module com.example.cryptology {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires org.bouncycastle.provider;
 
 
     opens com.example.cryptology to javafx.fxml;
