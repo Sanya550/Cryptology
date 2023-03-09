@@ -209,7 +209,7 @@ public class Controller {
         String phrase = textForEncrypt.getText();
         String key = keyForEncrypt.getText();
         SecretKey secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "Blowfish");
-        labelEncrypt.setText(Blowfish.encrypt(phrase, secretKey));
+//        labelEncrypt.setText(Blowfish.encrypt(phrase, secretKey));
     }
 
     @FXML
@@ -217,7 +217,7 @@ public class Controller {
         String encryptText = labelEncrypt.getText();
         String key = keyForEncrypt.getText();
         SecretKey secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "Blowfish");
-        labelEncrypt.setText(Blowfish.decrypt(encryptText, secretKey));
+//        labelEncrypt.setText(Blowfish.decrypt(encryptText, secretKey));
     }
 
     @FXML
