@@ -1,30 +1,32 @@
 package com.example.cryptology.controller;
 
 import com.example.cryptology.Helper.HelperForLab2;
+import com.example.cryptology.Helper.HelperForLab4;
 import com.example.cryptology.lab1.Hilla;
 import com.example.cryptology.lab1.Permutations;
 import com.example.cryptology.lab1.PlayFair;
 import com.example.cryptology.lab1.Vigenere;
 import com.example.cryptology.lab2.BBS;
 import com.example.cryptology.lab2.Lemer;
-import com.example.cryptology.lab3.Blowfish;
+import com.example.cryptology.lab4.MD5;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
+import org.bouncycastle.crypto.params.KeyParameter;
 import javax.swing.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import static com.example.cryptology.lab3.Blowfish.decrypt;
+import static com.example.cryptology.lab3.Blowfish.encrypt;
 
 public class Controller {
 
     @FXML
     private TableView tableView;
 
-    //lab1 and lab3:
+    //lab1 and lab3, lab4:
     @FXML
     private TextField textForEncrypt;
 
@@ -207,22 +209,43 @@ public class Controller {
     @FXML
     protected void encryptTextByBlowFish() throws Exception {
         String phrase = textForEncrypt.getText();
-        String key = keyForEncrypt.getText();
-        SecretKey secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "Blowfish");
-//        labelEncrypt.setText(Blowfish.encrypt(phrase, secretKey));
+        String key1 = keyForEncrypt.getText();
+        byte[] keyBytes = key1.getBytes(StandardCharsets.UTF_8);
+        KeyParameter key = new KeyParameter(keyBytes);
+        byte[] encryptedBytes = encrypt(phrase.getBytes(StandardCharsets.UTF_8), key);
+        String encryptedString = Base64.getEncoder().encodeToString(encryptedBytes);
+        labelEncrypt.setText(encryptedString);
     }
 
     @FXML
     protected void deEncryptTextByBlowFish() throws Exception {
         String encryptText = labelEncrypt.getText();
-        String key = keyForEncrypt.getText();
-        SecretKey secretKey = new SecretKeySpec(key.getBytes(StandardCharsets.UTF_8), "Blowfish");
-//        labelEncrypt.setText(Blowfish.decrypt(encryptText, secretKey));
+        String key1 = keyForEncrypt.getText();
+        byte[] keyBytes = key1.getBytes(StandardCharsets.UTF_8);
+        KeyParameter key = new KeyParameter(keyBytes);
+        byte[] encryptedBytes = Base64.getDecoder().decode(encryptText);
+        byte[] decryptedBytes = decrypt(encryptedBytes, key);
+        String decryptedString = new String(decryptedBytes, StandardCharsets.UTF_8);
+        labelEncrypt.setText(decryptedString);
     }
 
     @FXML
     protected void fillTestDataForBlowFish() {
-        textForEncrypt.setText("wearediscoveredsaveyourself");
-        keyForEncrypt.setText("deceptive");
+        textForEncrypt.setText("pyvovarsasha");
+        keyForEncrypt.setText("secret");
+    }
+
+    @FXML
+    protected void saveHash(){
+        if (!labelEncrypt.getText().isEmpty()) {
+            HelperForLab4.saveHash(labelEncrypt.getText());
+        }else {
+            JOptionPane.showMessageDialog(null, "Hash is empty", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    @FXML
+    protected void mdFive(){
+        labelEncrypt.setText(MD5.generateMD5(textForEncrypt.getText()));
     }
 }

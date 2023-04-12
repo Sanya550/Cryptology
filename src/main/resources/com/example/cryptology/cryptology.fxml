@@ -52,7 +52,6 @@
                       </Menu>
                         <Menu mnemonicParsing="false" text="lab2">
                            <items>
-                              <MenuItem mnemonicParsing="false" onAction="#testData" text="Test Data" />
                               <Menu mnemonicParsing="false" text="Метод Лемера">
                                  <items>
                                     <MenuItem mnemonicParsing="false" onAction="#lemera" text="Лемера" />
@@ -75,6 +74,12 @@
                                     <MenuItem mnemonicParsing="false" onAction="#deEncryptTextByBlowFish" text="Дешифрувати" />
                                  </items>
                               </Menu>
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="lab4">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#mdFive" text="MD5" />
+                              <MenuItem mnemonicParsing="false" onAction="#saveHash" text="Зберегти" />
                            </items>
                         </Menu>
                     </menus>
