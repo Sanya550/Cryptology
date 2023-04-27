@@ -9,15 +9,18 @@ import com.example.cryptology.lab1.Vigenere;
 import com.example.cryptology.lab2.BBS;
 import com.example.cryptology.lab2.Lemer;
 import com.example.cryptology.lab4.MD5;
+import com.example.cryptology.lab5.DiffiHelman;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.bouncycastle.crypto.params.KeyParameter;
+
 import javax.swing.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+
 import static com.example.cryptology.lab3.Blowfish.decrypt;
 import static com.example.cryptology.lab3.Blowfish.encrypt;
 
@@ -63,6 +66,31 @@ public class Controller {
 
     @FXML
     private TextField strBBSForS;
+
+    //lab5:
+    @FXML
+    private TextField openKeyAlisaStr;
+
+    @FXML
+    private TextField openKeyBobStr;
+
+    @FXML
+    private TextField parameterGForLab5Str;
+
+    @FXML
+    private TextField parameterPForLab5Str;
+
+    @FXML
+    private TextField calculatedKeyAlisaStr;
+
+    @FXML
+    private TextField calculatedKeyBobStr;
+
+    @FXML
+    private TextField digitAlisaStr;
+
+    @FXML
+    private TextField digitBobStr;
 
     //lab1:
     //Метод Плейфейра:
@@ -235,17 +263,34 @@ public class Controller {
         keyForEncrypt.setText("secret");
     }
 
+    //lab4:
     @FXML
-    protected void saveHash(){
+    protected void saveHash() {
         if (!labelEncrypt.getText().isEmpty()) {
             HelperForLab4.saveHash(labelEncrypt.getText());
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Hash is empty", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     @FXML
-    protected void mdFive(){
+    protected void mdFive() {
         labelEncrypt.setText(MD5.generateMD5(textForEncrypt.getText()));
+    }
+
+    //lab5:
+    @FXML
+    protected void findSecretKeyForLab5() {
+        DiffiHelman diffiHelman = new DiffiHelman();
+        diffiHelman.calculationKeys(Integer.parseInt(parameterPForLab5Str.getText()),Integer.parseInt(parameterGForLab5Str.getText()),
+                Integer.parseInt(digitAlisaStr.getText()),Integer.parseInt(digitBobStr.getText()), openKeyAlisaStr, openKeyBobStr, calculatedKeyAlisaStr, calculatedKeyBobStr);
+    }
+
+    @FXML
+    protected void testDataForLab5(){
+        parameterGForLab5Str.setText("5");
+        parameterPForLab5Str.setText("97");
+        digitAlisaStr.setText("36");
+        digitBobStr.setText("58");
     }
 }

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cryptology.controller.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cryptology.controller.Controller">
    <children>
       <SplitPane dividerPositions="0.4894366197183099" layoutX="191.0" layoutY="110.0" orientation="VERTICAL" prefHeight="570.0" prefWidth="756.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -80,6 +80,12 @@
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#mdFive" text="MD5" />
                               <MenuItem mnemonicParsing="false" onAction="#saveHash" text="Зберегти" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="lab5">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#findSecretKeyForLab5" text="Знайти секретний ключ" />
+                              <MenuItem mnemonicParsing="false" onAction="#testDataForLab5" text="Test data" />
                            </items>
                         </Menu>
                     </menus>
@@ -169,7 +175,71 @@
                   </SplitPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.48328025477707" layoutX="250.0" layoutY="64.0" prefHeight="288.0" prefWidth="755.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Text layoutX="10.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вхідні дані:" wrappingWidth="154.39995205402374">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Параметр g:" wrappingWidth="77.39998638629908">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="198.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Параметр p:" wrappingWidth="77.39998638629908">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="parameterGForLab5Str" layoutX="91.0" layoutY="25.0" prefHeight="25.0" prefWidth="71.0" />
+                              <TextField fx:id="parameterPForLab5Str" layoutX="275.0" layoutY="26.0" prefHeight="25.0" prefWidth="71.0" />
+                              <Text layoutX="10.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Число Аліси:" wrappingWidth="77.39998638629908">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="digitAlisaStr" layoutX="91.0" layoutY="59.0" prefHeight="25.0" prefWidth="71.0" />
+                              <Text layoutX="197.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Число Боба:" wrappingWidth="77.39998638629908">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="digitBobStr" layoutX="275.0" layoutY="59.0" prefHeight="25.0" prefWidth="71.0" />
+                              <Text layoutX="164.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сторона Аліси:" wrappingWidth="99.9999924898147">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="287.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сторона Боба:" wrappingWidth="93.59996426105499">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Відкритий ключ:" wrappingWidth="99.9999924898147">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Розрахунковий ключ:" wrappingWidth="137.59999859333033">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="openKeyAlisaStr" layoutX="171.0" layoutY="125.0" prefHeight="25.0" prefWidth="71.0" />
+                              <TextField fx:id="calculatedKeyAlisaStr" layoutX="171.0" layoutY="161.0" prefHeight="25.0" prefWidth="71.0" />
+                              <TextField fx:id="openKeyBobStr" layoutX="287.0" layoutY="125.0" prefHeight="25.0" prefWidth="71.0" />
+                              <TextField fx:id="calculatedKeyBobStr" layoutX="287.0" layoutY="161.0" prefHeight="25.0" prefWidth="71.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
         </items>
       </SplitPane>
    </children>
