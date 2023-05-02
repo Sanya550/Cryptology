@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cryptology.controller.Controller">
    <children>
-      <SplitPane dividerPositions="0.4894366197183099" layoutX="191.0" layoutY="110.0" orientation="VERTICAL" prefHeight="570.0" prefWidth="756.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.4453376205787781" layoutX="191.0" layoutY="110.0" orientation="VERTICAL" prefHeight="570.0" prefWidth="756.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="754.0">
                <children>
@@ -86,6 +86,12 @@
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#findSecretKeyForLab5" text="Знайти секретний ключ" />
                               <MenuItem mnemonicParsing="false" onAction="#testDataForLab5" text="Test data" />
+                           </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="lab6">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#signLab6" text="Підписати" />
+                              <MenuItem mnemonicParsing="false" onAction="#checkSignLab6" text="Перевірити підпис" />
                            </items>
                         </Menu>
                     </menus>
@@ -234,9 +240,75 @@
                               <TextField fx:id="calculatedKeyAlisaStr" layoutX="171.0" layoutY="161.0" prefHeight="25.0" prefWidth="71.0" />
                               <TextField fx:id="openKeyBobStr" layoutX="287.0" layoutY="125.0" prefHeight="25.0" prefWidth="71.0" />
                               <TextField fx:id="calculatedKeyBobStr" layoutX="287.0" layoutY="161.0" prefHeight="25.0" prefWidth="71.0" />
+                              <Text layoutX="10.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lab5" wrappingWidth="35.99999248981476">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Text layoutX="389.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lab6" wrappingWidth="35.99999248981476">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="parameterGForLab6" layoutX="74.0" layoutY="2.0" prefHeight="25.0" prefWidth="340.0" />
+                              <TextField fx:id="parameterPForLab6" layoutX="74.0" layoutY="38.0" prefHeight="25.0" prefWidth="340.0" />
+                              <TextField fx:id="secretLab6" layoutX="63.0" layoutY="107.0" prefHeight="25.0" prefWidth="340.0" />
+                              <TextField fx:id="openLab6" layoutX="63.0" layoutY="145.0" prefHeight="25.0" prefWidth="340.0" />
+                              <TextField fx:id="hashLab6" layoutX="63.0" layoutY="181.0" prefHeight="25.0" prefWidth="340.0" />
+                              <TextField fx:id="resultRLab6" layoutX="41.0" layoutY="235.0" prefHeight="25.0" prefWidth="340.0" />
+                              <TextField fx:id="textLab6" layoutX="41.0" layoutY="303.0" prefHeight="25.0" prefWidth="340.0" />
+                              <Text layoutX="21.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="p:" wrappingWidth="22.399986386299076">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="21.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="g:" wrappingWidth="22.399986386299076">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="1.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Open key:" wrappingWidth="61.99999248981476">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="3.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text:" wrappingWidth="35.99999248981476">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="8.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Secret:" wrappingWidth="61.99999248981476">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="6.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hash: " wrappingWidth="52.99999248981476">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="resultSLab6" layoutX="41.0" layoutY="267.0" prefHeight="25.0" prefWidth="340.0" />
+                              <Text layoutX="10.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R:" wrappingWidth="22.399986386299133">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="10.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S:" wrappingWidth="22.399986386299133">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="21.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="q:" wrappingWidth="22.399986386299076">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="parameterQForLab6" layoutX="74.0" layoutY="74.0" prefHeight="25.0" prefWidth="340.0" />
+                           </children></AnchorPane>
                     </items>
                   </SplitPane>
                </children></AnchorPane>

@@ -10,6 +10,7 @@ import com.example.cryptology.lab2.BBS;
 import com.example.cryptology.lab2.Lemer;
 import com.example.cryptology.lab4.MD5;
 import com.example.cryptology.lab5.DiffiHelman;
+import com.example.cryptology.lab6.DSA;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -17,6 +18,7 @@ import org.bouncycastle.crypto.params.KeyParameter;
 
 import javax.swing.*;
 import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -91,6 +93,26 @@ public class Controller {
 
     @FXML
     private TextField digitBobStr;
+
+    //lab6:
+    @FXML
+    private TextField parameterGForLab6;
+    @FXML
+    private TextField parameterPForLab6;
+    @FXML
+    private TextField parameterQForLab6;
+    @FXML
+    private TextField secretLab6;
+    @FXML
+    private TextField openLab6;
+    @FXML
+    private TextField hashLab6;
+    @FXML
+    private TextField resultRLab6;
+    @FXML
+    private TextField resultSLab6;
+    @FXML
+    private TextField textLab6;
 
     //lab1:
     //Метод Плейфейра:
@@ -282,15 +304,31 @@ public class Controller {
     @FXML
     protected void findSecretKeyForLab5() {
         DiffiHelman diffiHelman = new DiffiHelman();
-        diffiHelman.calculationKeys(Integer.parseInt(parameterPForLab5Str.getText()),Integer.parseInt(parameterGForLab5Str.getText()),
-                Integer.parseInt(digitAlisaStr.getText()),Integer.parseInt(digitBobStr.getText()), openKeyAlisaStr, openKeyBobStr, calculatedKeyAlisaStr, calculatedKeyBobStr);
+        diffiHelman.calculationKeys(Integer.parseInt(parameterPForLab5Str.getText()), Integer.parseInt(parameterGForLab5Str.getText()),
+                Integer.parseInt(digitAlisaStr.getText()), Integer.parseInt(digitBobStr.getText()), openKeyAlisaStr, openKeyBobStr, calculatedKeyAlisaStr, calculatedKeyBobStr);
     }
 
     @FXML
-    protected void testDataForLab5(){
+    protected void testDataForLab5() {
         parameterGForLab5Str.setText("5");
         parameterPForLab5Str.setText("97");
         digitAlisaStr.setText("36");
         digitBobStr.setText("58");
+    }
+
+    //lab6:
+    @FXML
+    protected void signLab6() throws NoSuchAlgorithmException {
+        DSA.generateSignature(parameterPForLab6, parameterGForLab6, parameterQForLab6, secretLab6, openLab6, hashLab6, resultRLab6, resultSLab6, textLab6);
+    }
+
+    @FXML
+    protected void checkSignLab6() throws NoSuchAlgorithmException {
+        var flag = DSA.verifySignature(openLab6, resultRLab6, resultSLab6, textLab6);
+        if (flag == true){
+            JOptionPane.showMessageDialog(null, "Підтверджено" ,"Перевірка підпису", JOptionPane.INFORMATION_MESSAGE);
+        }else {
+            JOptionPane.showMessageDialog(null, "Відхилено" ,"Перевірка підпису", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
