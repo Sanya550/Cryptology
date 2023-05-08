@@ -66,7 +66,6 @@ public class DSA {
 
         BigInteger w = s.modInverse(q);
 
-        // вычисление u1 и u2
         BigInteger u1 = h.multiply(w).mod(q);
         BigInteger u2 = r.multiply(w).mod(q);
 

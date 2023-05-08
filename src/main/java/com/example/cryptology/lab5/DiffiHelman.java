@@ -18,7 +18,6 @@ public class DiffiHelman {
         }
     }
 
-//метод для быстрого возведения в степень с учетом модуля.
     private int modPow(int base, int exponent, int modulus) {
         int result = 1;
         while (exponent > 0) {
@@ -26,7 +25,7 @@ public class DiffiHelman {
                 result = (result * base) % modulus;
             }
             base = (base * base) % modulus;
-            exponent >>= 1;//это оператор сдвига вправо с присваиванием, который эквивалентен делению на 2 в степени k
+            exponent >>= 1;
         }
         return result;
     }
