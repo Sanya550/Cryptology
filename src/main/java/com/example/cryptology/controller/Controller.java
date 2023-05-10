@@ -325,7 +325,7 @@ public class Controller {
     @FXML
     protected void checkSignLab6() throws NoSuchAlgorithmException {
         var flag = DSA.verifySignature(openLab6, resultRLab6, resultSLab6, textLab6);
-        if (flag == true){
+        if (flag){
             JOptionPane.showMessageDialog(null, "Підтверджено" ,"Перевірка підпису", JOptionPane.INFORMATION_MESSAGE);
         }else {
             JOptionPane.showMessageDialog(null, "Відхилено" ,"Перевірка підпису", JOptionPane.ERROR_MESSAGE);

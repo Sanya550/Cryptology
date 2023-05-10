@@ -1,5 +1,6 @@
 package com.example.cryptology.lab6;
 
+import com.example.cryptology.lab4.MD5;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
@@ -32,7 +33,8 @@ public class DSA {
             setParameters();
             secretKey = new BigInteger(q.bitLength(), new SecureRandom()).add(BigInteger.ONE).mod(q);
             openKey = g.modPow(secretKey, p);
-            byte[] hash = getHash(message.getText());
+//            byte[] hash = getHash(message.getText());
+            byte[] hash = MD5.generateMD5Int(message.getText());
             BigInteger h = new BigInteger(1, hash);
 
             BigInteger k;
@@ -58,7 +60,7 @@ public class DSA {
     }
 
     public static boolean verifySignature(TextField openKey, TextField rField, TextField sField, TextField message) throws NoSuchAlgorithmException {
-        byte[] hash = getHash(message.getText());
+        byte[] hash = MD5.generateMD5Int(message.getText());
         BigInteger h = new BigInteger(1, hash);
 
         BigInteger r = new BigInteger(rField.getText());

@@ -151,4 +151,22 @@ public class MD5 {
         }
     }
 
+    public static byte[] generateMD5Int(String input) {
+        try {
+            byte[] message = input.getBytes("UTF-8");
+            byte[] paddedMessage = padMessage(message);
+            int[] hashArray = md5Algorithm(paddedMessage);
+            byte[] hashBytes = new byte[hashArray.length * 4];
+            for (int i = 0; i < hashArray.length; i++) {
+                hashBytes[i * 4] = (byte) (hashArray[i] & 0xFF);
+                hashBytes[i * 4 + 1] = (byte) ((hashArray[i] >> 8) & 0xFF);
+                hashBytes[i * 4 + 2] = (byte) ((hashArray[i] >> 16) & 0xFF);
+                hashBytes[i * 4 + 3] = (byte) ((hashArray[i] >> 24) & 0xFF);
+            }
+            return hashBytes;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
