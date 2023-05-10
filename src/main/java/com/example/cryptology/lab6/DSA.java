@@ -1,5 +1,6 @@
 package com.example.cryptology.lab6;
 
+import com.example.cryptology.controller.Controller;
 import com.example.cryptology.lab4.MD5;
 import javafx.scene.control.TextField;
 
@@ -12,6 +13,8 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import static com.example.cryptology.controller.Controller.*;
+
 public class DSA {
 
     private static BigInteger p;
@@ -21,57 +24,48 @@ public class DSA {
     private static BigInteger secretKey;
     private static BigInteger openKey;
 
-    private static byte[] getHash(String message) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        return md.digest(message.getBytes());
-    }
-
-    public static void generateSignature(TextField parameterP, TextField parameterG,TextField parameterQ, TextField secret, TextField open, TextField hashField, TextField rField, TextField sField, TextField message) throws NoSuchAlgorithmException {
-        if (message.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Text is empty", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            setParameters();
-            secretKey = new BigInteger(q.bitLength(), new SecureRandom()).add(BigInteger.ONE).mod(q);
-            openKey = g.modPow(secretKey, p);
-//            byte[] hash = getHash(message.getText());
-            byte[] hash = MD5.generateMD5Int(message.getText());
-            BigInteger h = new BigInteger(1, hash);
-
-            BigInteger k;
-            do {
-                k = new BigInteger(q.bitLength(), new SecureRandom()).mod(q);
-            } while (k.equals(BigInteger.ZERO));
-
-            BigInteger r = g.modPow(k, p).mod(q);
-
-            BigInteger x = secretKey;
-            BigInteger kInv = k.modInverse(q);
-            BigInteger s = kInv.multiply(h.add(x.multiply(r))).mod(q);
-
-            parameterP.setText(p.toString());
-            parameterG.setText(g.toString());
-            parameterQ.setText(q.toString());
-            open.setText(openKey.toString());
-            secret.setText(secretKey.toString());
-            hashField.setText(h.toString());
-            rField.setText(r.toString());
-            sField.setText(s.toString());
-        }
-    }
-
-    public static boolean verifySignature(TextField openKey, TextField rField, TextField sField, TextField message) throws NoSuchAlgorithmException {
-        byte[] hash = MD5.generateMD5Int(message.getText());
+    public static void generateSignature(TextField parameterP, TextField parameterQ, String message) throws NoSuchAlgorithmException {
+        setParameters();
+        secretKey = new BigInteger(q.bitLength(), new SecureRandom()).add(BigInteger.ONE).mod(q);
+        openKey = g.modPow(secretKey, p);
+        byte[] hash = MD5.generateMD5Int(message);
         BigInteger h = new BigInteger(1, hash);
 
-        BigInteger r = new BigInteger(rField.getText());
-        BigInteger s = new BigInteger(sField.getText());
+        BigInteger k;
+        do {
+            k = new BigInteger(q.bitLength(), new SecureRandom()).mod(q);
+        } while (k.equals(BigInteger.ZERO));
+
+        BigInteger r = g.modPow(k, p).mod(q);
+
+        BigInteger x = secretKey;
+        BigInteger kInv = k.modInverse(q);
+        BigInteger s = kInv.multiply(h.add(x.multiply(r))).mod(q);
+
+        parameterP.setText(p.toString());
+        parameterQ.setText(q.toString());
+        openDSA = openKey.intValue();
+        secretDSA = secretKey.intValue();
+        rDSA = r.intValue();
+        sDSA = s.intValue();
+    }
+
+    public static boolean verifySignature(int openKey, int rField, int sField, String message) throws NoSuchAlgorithmException {
+        q = new BigInteger(String.valueOf(qDSA));
+        g = new BigInteger(String.valueOf(gDSA));
+        p = new BigInteger(String.valueOf(pDSA));
+        byte[] hash = MD5.generateMD5Int(message);
+        BigInteger h = new BigInteger(1, hash);
+
+        BigInteger r = new BigInteger(String.valueOf(rField));
+        BigInteger s = new BigInteger(String.valueOf(sField));
 
         BigInteger w = s.modInverse(q);
 
         BigInteger u1 = h.multiply(w).mod(q);
         BigInteger u2 = r.multiply(w).mod(q);
 
-        BigInteger open = new BigInteger(openKey.getText());
+        BigInteger open = new BigInteger(String.valueOf(openKey));
 
         BigInteger v = g.modPow(u1, p).multiply(open.modPow(u2, p)).mod(p).mod(q);
         return v.equals(r);
@@ -85,9 +79,9 @@ public class DSA {
             int pInt = 2 * qInt + 1;
             int counter = 0;
             while (!isPrime(pInt) || (pInt - 1) % qInt != 0) {
-                if(counter == 50){
-                    pInt = 7;
-                    qInt = 3;
+                if (counter == 50) {
+                    pInt = 348173807;
+                    qInt = 174086903;
                     break;
                 }
                 qInt = generatePrime(rnd);
@@ -105,6 +99,9 @@ public class DSA {
                 break;
             }
         }
+        pDSA = p.intValue();
+        qDSA = q.intValue();
+        gDSA = g.intValue();
     }
 
     private static int generatePrime(Random rnd) {

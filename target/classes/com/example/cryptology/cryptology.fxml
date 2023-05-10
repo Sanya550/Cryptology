@@ -1,48 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cryptology.controller.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="932.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cryptology.controller.Controller">
    <children>
       <SplitPane dividerPositions="0.4453376205787781" layoutX="191.0" layoutY="110.0" orientation="VERTICAL" prefHeight="570.0" prefWidth="756.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="265.0" prefWidth="754.0">
                <children>
-                  <MenuBar prefHeight="25.0" prefWidth="756.0">
-                    <menus>
-                        <Menu mnemonicParsing="false" text="lab3">
-                           <items>
-                              <Menu mnemonicParsing="false" text="Blowfish">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" onAction="#fillTestDataForBlowFish" text="Test Data" />
-                                    <MenuItem mnemonicParsing="false" onAction="#encryptTextByBlowFish" text="Зашифрувати" />
-                                    <MenuItem mnemonicParsing="false" onAction="#deEncryptTextByBlowFish" text="Дешифрувати" />
-                                 </items>
-                              </Menu>
-                           </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="lab4">
-                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#mdFive" text="MD5" />
-                              <MenuItem mnemonicParsing="false" onAction="#saveHash" text="Зберегти" />
-                           </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="lab6">
-                           <items>
-                              <MenuItem mnemonicParsing="false" onAction="#signLab6" text="Підписати" />
-                              <MenuItem mnemonicParsing="false" onAction="#checkSignLab6" text="Перевірити підпис" />
-                           </items>
-                        </Menu>
-                    </menus>
-                  </MenuBar>
                   <SplitPane dividerPositions="0.6662234042553191" layoutX="251.0" layoutY="25.0" prefHeight="210.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="192.0" prefWidth="585.0">
@@ -53,85 +28,82 @@
                                     <Font size="13.0" />
                                  </font>
                               </Text>
-                              <Label fx:id="labelEncrypt" layoutX="114.0" layoutY="84.0" prefHeight="20.0" prefWidth="256.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
                               <TextField fx:id="keyForEncrypt" layoutX="114.0" layoutY="55.0" prefHeight="25.0" prefWidth="176.0" />
-                              <Text layoutX="21.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ключ:" wrappingWidth="85.99999248981476">
+                              <Text layoutX="7.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ключ(BlowFish):" wrappingWidth="99.99999248981476">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
                               </Text>
+                              <TextField fx:id="parameterPForLab6" layoutX="114.0" layoutY="152.0" prefHeight="25.0" prefWidth="176.0" />
+                              <Text layoutX="75.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="p:" wrappingWidth="22.399986386299076">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="72.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="q:" wrappingWidth="22.399986386299076">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="parameterQForLab6" layoutX="114.0" layoutY="194.0" prefHeight="25.0" prefWidth="176.0" />
+                              <Button layoutX="114.0" layoutY="97.0" mnemonicParsing="false" onAction="#encryptTextByBlowFish" prefHeight="25.0" prefWidth="176.0" text="BlowFish" />
+                              <Button layoutX="334.0" layoutY="13.0" mnemonicParsing="false" onAction="#fillTestDataForBlowFish" prefHeight="25.0" prefWidth="100.0" text="Test Data" />
+                              <Button layoutX="483.0" layoutY="13.0" mnemonicParsing="false" onAction="#randomForTextAndKey" prefHeight="25.0" prefWidth="100.0" text="Random" />
+                              <CheckBox fx:id="checkBoxForText" layoutX="483.0" layoutY="47.0" mnemonicParsing="false" text="Текст" />
+                              <CheckBox fx:id="checkBoxForKey" layoutX="483.0" layoutY="69.0" mnemonicParsing="false" text="Ключ" />
+                              <Button layoutX="114.0" layoutY="231.0" mnemonicParsing="false" onAction="#sign" prefHeight="25.0" prefWidth="176.0" text="Підписати" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="158.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="158.0">
+                           <children>
+                              <Text layoutX="80.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Збереження" wrappingWidth="134.99999248981476">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Button layoutX="170.0" layoutY="59.0" mnemonicParsing="false" onAction="#saveBlowFishKey" prefHeight="25.0" prefWidth="135.0" text="BlowFish key" />
+                              <Button layoutX="170.0" layoutY="100.0" mnemonicParsing="false" onAction="#saveKeyForLetter" prefHeight="25.0" prefWidth="135.0" text="DSA ключі" />
+                              <Button layoutX="170.0" layoutY="142.0" mnemonicParsing="false" onAction="#saveLetter" prefHeight="25.0" prefWidth="135.0" text="Цифровий конверт" />
+                              <TextField fx:id="textFieldForBlowFishKey" layoutX="11.0" layoutY="57.0" prefHeight="25.0" prefWidth="153.0" text="blowFishKey1" />
+                              <TextField fx:id="textFieldForKeyLetter" layoutX="11.0" layoutY="100.0" prefHeight="25.0" prefWidth="153.0" text="keysForDSA1" />
+                              <TextField fx:id="textFieldForLetter" layoutX="11.0" layoutY="142.0" prefHeight="25.0" prefWidth="153.0" text="digitLetter1" />
+                           </children>
+                        </AnchorPane>
                     </items>
                   </SplitPane>
+                  <MenuBar layoutX="3.0" layoutY="2.0" prefHeight="25.0" prefWidth="615.0">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="Інструкція користувача" />
+                              <MenuItem mnemonicParsing="false" text="Про програму" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <SplitPane dividerPositions="0.48328025477707" layoutX="250.0" layoutY="64.0" prefHeight="288.0" prefWidth="755.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <TextField fx:id="parameterGForLab6" layoutX="74.0" layoutY="2.0" prefHeight="25.0" prefWidth="340.0" />
-                              <TextField fx:id="parameterPForLab6" layoutX="74.0" layoutY="38.0" prefHeight="25.0" prefWidth="340.0" />
-                              <TextField fx:id="secretLab6" layoutX="63.0" layoutY="107.0" prefHeight="25.0" prefWidth="340.0" />
-                              <TextField fx:id="openLab6" layoutX="63.0" layoutY="145.0" prefHeight="25.0" prefWidth="340.0" />
-                              <TextField fx:id="hashLab6" layoutX="63.0" layoutY="181.0" prefHeight="25.0" prefWidth="340.0" />
-                              <TextField fx:id="resultRLab6" layoutX="41.0" layoutY="235.0" prefHeight="25.0" prefWidth="340.0" />
-                              <TextField fx:id="textLab6" layoutX="41.0" layoutY="303.0" prefHeight="25.0" prefWidth="340.0" />
-                              <Text layoutX="21.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="p:" wrappingWidth="22.399986386299076">
+                              <TextArea fx:id="textArea" layoutX="14.0" layoutY="6.0" prefHeight="208.0" prefWidth="421.0" />
+                              <Button layoutX="123.0" layoutY="284.0" mnemonicParsing="false" onAction="#checkSign" prefHeight="42.0" prefWidth="176.0" text="Верифікація" />
+                              <Button layoutX="14.0" layoutY="230.0" mnemonicParsing="false" onAction="#clearTextArea" prefHeight="25.0" prefWidth="100.0" text="Clear" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Text layoutX="144.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Зчитування" wrappingWidth="134.99999248981476">
                                  <font>
-                                    <Font size="13.0" />
+                                    <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Text layoutX="21.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="g:" wrappingWidth="22.399986386299076">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="1.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Open key:" wrappingWidth="61.99999248981476">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="3.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text:" wrappingWidth="35.99999248981476">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="8.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Secret:" wrappingWidth="61.99999248981476">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="6.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hash: " wrappingWidth="52.99999248981476">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Text>
-                              <TextField fx:id="resultSLab6" layoutX="41.0" layoutY="267.0" prefHeight="25.0" prefWidth="340.0" />
-                              <Text layoutX="10.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R:" wrappingWidth="22.399986386299133">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="10.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S:" wrappingWidth="22.399986386299133">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="21.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="q:" wrappingWidth="22.399986386299076">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Text>
-                              <TextField fx:id="parameterQForLab6" layoutX="74.0" layoutY="74.0" prefHeight="25.0" prefWidth="340.0" />
+                              <Button layoutX="15.0" layoutY="63.0" mnemonicParsing="false" onAction="#readBlowFishKey" prefHeight="25.0" prefWidth="92.0" text="BlowFish key" />
+                              <Button layoutX="124.0" layoutY="63.0" mnemonicParsing="false" onAction="#readDSAKey" prefHeight="25.0" prefWidth="135.0" text="DSA ключі" />
+                              <Button layoutX="279.0" layoutY="63.0" mnemonicParsing="false" onAction="#readLetter" prefHeight="25.0" prefWidth="135.0" text="Цифровий конверт" />
                            </children></AnchorPane>
                     </items>
                   </SplitPane>
