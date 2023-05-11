@@ -90,8 +90,6 @@ public class DSA {
             }
             p = new BigInteger(String.valueOf(pInt));
             q = new BigInteger(String.valueOf(qInt));
-            System.out.println("p = " + p);
-            System.out.println("q = " + q);
 
             h = new BigInteger(p.subtract(BigInteger.ONE).subtract(BigInteger.ONE).bitLength(), random).add(BigInteger.ONE);
             g = h.modPow(p.subtract(BigInteger.ONE).divide(q), p);
