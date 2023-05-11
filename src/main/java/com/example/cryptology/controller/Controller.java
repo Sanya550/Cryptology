@@ -95,18 +95,22 @@ public class Controller {
 
     @FXML
     protected void checkSign() throws Exception {
-        String encryptText = encrText;////////////////////
-        String key1 = keyForBlowfish;
-        byte[] keyBytes = key1.getBytes(StandardCharsets.UTF_8);
-        KeyParameter key = new KeyParameter(keyBytes);
-        byte[] encryptedBytes = Base64.getDecoder().decode(encryptText);
-        byte[] decryptedBytes = decrypt(encryptedBytes, key);
-        String decryptedString = new String(decryptedBytes, StandardCharsets.UTF_8);
+        try {
+            String encryptText = encrText;
+            String key1 = keyForBlowfish;
+            byte[] keyBytes = key1.getBytes(StandardCharsets.UTF_8);
+            KeyParameter key = new KeyParameter(keyBytes);
+            byte[] encryptedBytes = Base64.getDecoder().decode(encryptText);
+            byte[] decryptedBytes = decrypt(encryptedBytes, key);
+            String decryptedString = new String(decryptedBytes, StandardCharsets.UTF_8);
 
-        var flag = DSA.verifySignature(openDSA, rDSA, sDSA, decryptedString);
-        if (flag) {
-            JOptionPane.showMessageDialog(null, "Підтверджено", "Перевірка підпису", JOptionPane.INFORMATION_MESSAGE);
-        } else {
+            var flag = DSA.verifySignature(openDSA, rDSA, sDSA, decryptedString);
+            if (flag) {
+                JOptionPane.showMessageDialog(null, "Підтверджено", "Перевірка підпису", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Відхилено", "Перевірка підпису", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch (IllegalArgumentException illegalArgumentException){
             JOptionPane.showMessageDialog(null, "Відхилено", "Перевірка підпису", JOptionPane.ERROR_MESSAGE);
         }
     }

@@ -73,7 +73,7 @@ public class Helper {
             e.printStackTrace();
         }
         for (String str : listString) {
-            String[] parts = str.trim().split("=");
+            String[] parts = str.trim().split("=", 2);
             if (parts.length == 2) {
                 String parameter = parts[0].trim();
                 String value = parts[1].trim();
