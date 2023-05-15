@@ -1,6 +1,7 @@
 package com.example.cryptology.controller;
 
 import com.example.cryptology.Helper.Helper;
+import com.example.cryptology.lab2.BBS;
 import com.example.cryptology.lab4.MD5;
 import com.example.cryptology.lab6.DSA;
 import javafx.fxml.FXML;
@@ -87,7 +88,7 @@ public class Controller {
     @FXML
     protected void sign() throws NoSuchAlgorithmException {
         DSA.generateSignature(parameterPForLab6, parameterQForLab6, textForEncrypt.getText());
-        textArea.appendText("\n\nХеш зашифрованого тексту за допомогою метода MD5:\n");
+        textArea.appendText("\n\nХеш тексту за допомогою метода MD5:\n");
         textArea.appendText(MD5.generateMD5(textForEncrypt.getText()));
         textArea.appendText("\n\nПідпис методом DSA:\n");
         textArea.appendText("[r,s] = [" + rDSA + ", " + sDSA + "]");
@@ -110,7 +111,7 @@ public class Controller {
             } else {
                 JOptionPane.showMessageDialog(null, "Відхилено", "Перевірка підпису", JOptionPane.ERROR_MESSAGE);
             }
-        }catch (IllegalArgumentException illegalArgumentException){
+        } catch (Exception illegalArgumentException) {
             JOptionPane.showMessageDialog(null, "Відхилено", "Перевірка підпису", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -169,5 +170,29 @@ public class Controller {
     @FXML
     protected void clearTextArea() {
         textArea.clear();
+    }
+
+    @FXML
+    protected void bbsKey() {
+        BBS bbs = new BBS();
+        keyForEncrypt.setText(bbs.getTextViaBBS(bbs.generateListOfDigit()));
+    }
+
+    @FXML
+    protected void about() {
+        JOptionPane.showMessageDialog(null, "Program created by Pyvovar Oleksandr", "About", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @FXML
+    protected void help() {
+        String str = "Збереження:\n" +
+                "1.Згенеруйте текст і ключ(за допомогою кнопки Random) або введіть дані самостійно.\n" +
+                "2.Натисніть кнопку Blowfish, щоб отримати зашифрований текст.\n" +
+                "3.Натисніть кнопку Підписати, щоб отримати хеш і ключ.\n" +
+                "4.Збережіть ключі і цифровий конверт, задля цього скористайтесь блоком Збереження.\n\n";
+        str += "Верифікація:\n" +
+                "1.Завантажте усі необхідні ключі та цифровий конверт, задля цього скористайтесь блоком Зчитування.\n" +
+                "2.Натисніть кнопку Верифікація, щоб отримати результат перевірки.";
+        JOptionPane.showMessageDialog(null, str, "Help Information", JOptionPane.INFORMATION_MESSAGE);
     }
 }

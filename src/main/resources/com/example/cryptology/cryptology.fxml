@@ -47,11 +47,12 @@
                               </Text>
                               <TextField fx:id="parameterQForLab6" layoutX="114.0" layoutY="194.0" prefHeight="25.0" prefWidth="176.0" />
                               <Button layoutX="114.0" layoutY="97.0" mnemonicParsing="false" onAction="#encryptTextByBlowFish" prefHeight="25.0" prefWidth="176.0" text="BlowFish" />
-                              <Button layoutX="334.0" layoutY="13.0" mnemonicParsing="false" onAction="#fillTestDataForBlowFish" prefHeight="25.0" prefWidth="100.0" text="Test Data" />
+                              <Button layoutX="334.0" layoutY="13.0" mnemonicParsing="false" onAction="#fillTestDataForBlowFish" prefHeight="25.0" prefWidth="113.0" text="Test Data" />
                               <Button layoutX="483.0" layoutY="13.0" mnemonicParsing="false" onAction="#randomForTextAndKey" prefHeight="25.0" prefWidth="100.0" text="Random" />
                               <CheckBox fx:id="checkBoxForText" layoutX="483.0" layoutY="47.0" mnemonicParsing="false" text="Текст" />
                               <CheckBox fx:id="checkBoxForKey" layoutX="483.0" layoutY="69.0" mnemonicParsing="false" text="Ключ" />
                               <Button layoutX="114.0" layoutY="231.0" mnemonicParsing="false" onAction="#sign" prefHeight="25.0" prefWidth="176.0" text="Підписати" />
+                              <Button layoutX="324.0" layoutY="54.0" mnemonicParsing="false" onAction="#bbsKey" prefHeight="25.0" prefWidth="135.0" text="Generate key via BBS" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="208.0" prefWidth="158.0">
@@ -75,8 +76,8 @@
                     <menus>
                       <Menu mnemonicParsing="false" text="Help">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="Інструкція користувача" />
-                              <MenuItem mnemonicParsing="false" text="Про програму" />
+                          <MenuItem mnemonicParsing="false" onAction="#help" text="Інструкція користувача" />
+                              <MenuItem mnemonicParsing="false" onAction="#about" text="Про програму" />
                         </items>
                       </Menu>
                     </menus>
